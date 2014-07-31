@@ -1,0 +1,13 @@
+best<-function(state,outcome) {
+  outcomedata<-read.csv("outcome-of-care-measures.csv", colClasses="character")
+  if(match(outcome,c("heart attack", "heart failure", "pneumonia"),nomatch=-1)==-1) stop("invalid outcome")
+  if(match(state,outcomedata[,7],nomatch=-1)==-1)
+    stop("invalid state")
+  matchdata<-splitdata[[state]]
+  if(outcome=="heart attack")
+    print(matchdata[which.min(suppressWarnings(as.numeric(matchdata[,11]))),2])
+  if(outcome=="heart failure")
+    print(matchdata[which.min(suppressWarnings(as.numeric(matchdata[,17]))),2])
+  if(outcome=="pneumonia")
+    print(matchdata[which.min(suppressWarnings(as.numeric(matchdata[,23]))),2])
+ }
